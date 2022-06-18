@@ -1,0 +1,80 @@
+{
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/sensor-statistics-ui/src",
+	"projectType": "application",
+	"targets": {
+		"build": {
+			"executor": "@nrwl/web:webpack",
+			"outputs": ["{options.outputPath}"],
+			"defaultConfiguration": "production",
+			"options": {
+				"compiler": "babel",
+				"outputPath": "dist/apps/sensor-statistics-ui",
+				"index": "apps/sensor-statistics-ui/src/index.html",
+				"baseHref": "/",
+				"main": "apps/sensor-statistics-ui/src/main.tsx",
+				"polyfills": "apps/sensor-statistics-ui/src/polyfills.ts",
+				"tsConfig": "apps/sensor-statistics-ui/tsconfig.app.json",
+				"assets": ["apps/sensor-statistics-ui/src/favicon.ico", "apps/sensor-statistics-ui/src/assets"],
+				"styles": ["apps/sensor-statistics-ui/src/styles.scss"],
+				"scripts": [],
+				"webpackConfig": "@nrwl/react/plugins/webpack"
+			},
+			"configurations": {
+				"development": {
+					"extractLicenses": false,
+					"optimization": false,
+					"sourceMap": true,
+					"vendorChunk": true
+				},
+				"production": {
+					"fileReplacements": [
+						{
+							"replace": "apps/sensor-statistics-ui/src/environments/environment.ts",
+							"with": "apps/sensor-statistics-ui/src/environments/environment.prod.ts"
+						}
+					],
+					"optimization": true,
+					"outputHashing": "all",
+					"sourceMap": false,
+					"namedChunks": false,
+					"extractLicenses": true,
+					"vendorChunk": false
+				}
+			}
+		},
+		"serve": {
+			"executor": "@nrwl/web:dev-server",
+			"defaultConfiguration": "development",
+			"options": {
+				"buildTarget": "sensor-statistics-ui:build",
+				"hmr": true
+			},
+			"configurations": {
+				"development": {
+					"buildTarget": "sensor-statistics-ui:build:development"
+				},
+				"production": {
+					"buildTarget": "sensor-statistics-ui:build:production",
+					"hmr": false
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/sensor-statistics-ui/**/*.{ts,tsx,js,jsx}"]
+			}
+		},
+		"test": {
+			"executor": "@nrwl/jest:jest",
+			"outputs": ["coverage/apps/sensor-statistics-ui"],
+			"options": {
+				"jestConfig": "apps/sensor-statistics-ui/jest.config.ts",
+				"passWithNoTests": true
+			}
+		}
+	},
+	"tags": []
+}

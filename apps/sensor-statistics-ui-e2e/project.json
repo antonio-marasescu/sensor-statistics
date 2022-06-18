@@ -1,0 +1,28 @@
+{
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/sensor-statistics-ui-e2e/src",
+	"projectType": "application",
+	"targets": {
+		"e2e": {
+			"executor": "@nrwl/cypress:cypress",
+			"options": {
+				"cypressConfig": "apps/sensor-statistics-ui-e2e/cypress.json",
+				"devServerTarget": "sensor-statistics-ui:serve:development"
+			},
+			"configurations": {
+				"production": {
+					"devServerTarget": "sensor-statistics-ui:serve:production"
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nrwl/linter:eslint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": ["apps/sensor-statistics-ui-e2e/**/*.{js,ts}"]
+			}
+		}
+	},
+	"tags": [],
+	"implicitDependencies": ["sensor-statistics-ui"]
+}

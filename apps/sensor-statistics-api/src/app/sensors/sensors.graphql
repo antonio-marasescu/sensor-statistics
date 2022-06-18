@@ -1,0 +1,44 @@
+type Query {
+	sensors(sensorType: SensorType = ALL): [Sensor!]!
+	sensor(id: ID!): Sensor
+}
+
+type Mutation {
+	createSensor(createSensorInput: CreateSensorInput!): Sensor
+	createSensorData(createSensorDataInput: CreateSensorDataInput!): SensorData
+}
+
+enum SensorType {
+	ALL
+	POSITION
+	PRESSURE
+	TEMPERATURE
+	FORCE
+	VIBRATION
+	HUMIDITY
+}
+
+type Sensor {
+	id: ID!
+	name: String!
+	sensorType: SensorType!
+	description: String
+	data: [SensorData!]!
+}
+
+type SensorData {
+	timestamp: Int!
+	value: String!
+}
+
+input CreateSensorInput {
+	name: String!
+	sensorType: SensorType!
+	description: String
+}
+
+input CreateSensorDataInput {
+	sensorId: ID!
+	timestamp: Int!
+	value: String!
+}

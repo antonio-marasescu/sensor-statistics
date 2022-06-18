@@ -1,0 +1,10 @@
+{
+	"$schema": "./node_modules/nx/schemas/workspace-schema.json",
+	"version": 2,
+	"projects": {
+		"api-types": "libs/api-types",
+		"sensor-statistics-api": "apps/sensor-statistics-api",
+		"sensor-statistics-ui": "apps/sensor-statistics-ui",
+		"sensor-statistics-ui-e2e": "apps/sensor-statistics-ui-e2e"
+	}
+}
