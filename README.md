@@ -1,6 +1,6 @@
 # Sensor Statistics
 
-A quick project demonstrating a GraphQL API implementation and communication with a React UI.
+A quick project demonstrating a GraphQL API implementation and communication with a React UI. The idea is a simplistic sensor management platform.
 
 # Tech Stack
 
