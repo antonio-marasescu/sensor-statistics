@@ -11,6 +11,9 @@ export class RedisService {
 
 	async getAllByType<T>(type: String): Promise<T[]> {
 		const keys = await this._redis.keys(`${type}*`);
+		if (!keys || keys.length === 0) {
+			return [];
+		}
 		const values = await this._redis.mget(keys);
 		return values.map((value) => JSON.parse(value)) || [];
 	}
